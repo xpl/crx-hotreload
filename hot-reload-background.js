@@ -15,8 +15,8 @@ const watchChanges = (files, prevTexts) => {
 
                     if (changed) {
                     
-                            chrome.tabs.sendMessage (tabs[0].id, { action: 'runtime_reloaded' }, () => {})
-                            chrome.runtime.reload ()
+                        chrome.tabs.sendMessage (tabs[0].id, { action: 'runtime_reloaded' }, () => {})
+                        chrome.runtime.reload ()
 
                     } else {
 
