@@ -16,7 +16,7 @@ Watches for file changes in an extension's directory (by constantly polling file
     "background": { "scripts": ["hot-reload-background.js"] }
 ```
 
-Do not forget to remove it from production build!
+Do not forget to remove it from the production build!
 
 ## Issues
 
