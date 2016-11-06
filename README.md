@@ -15,3 +15,8 @@ Watches for file changes in an extension's directory (by constantly polling file
     
     "background": { "scripts": ["hot-reload-background.js"] }
 ```
+
+## Issues
+
+- Watches only for files having `.js` or `.json` extension.
+- Does not support directories
