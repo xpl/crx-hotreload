@@ -18,5 +18,5 @@ Watches for file changes in an extension's directory (by constantly polling file
 
 ## Issues
 
-- Watches only for files having `.js` or `.json` extension.
+- Watches only for files having `.js` or `.json` extension
 - Does not support directories
