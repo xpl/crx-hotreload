@@ -7,6 +7,7 @@ Watches for file changes in an extension's directory (by constantly polling file
 1. Drop [`hot-reload.js`](https://github.com/xpl/crx-hotreload/blob/master/hot-reload.js) and [`hot-reload-background.js`](https://github.com/xpl/crx-hotreload/blob/master/hot-reload-background.js) to your extension's directory.
 
 2. Edit the `manifest.json` this way:
+
 ```json
     "permissions": ["tabs", "activeTab"],
 
@@ -15,7 +16,7 @@ Watches for file changes in an extension's directory (by constantly polling file
     "background": { "scripts": ["hot-reload-background.js"] }
 ```
 
-3. Do not forget to remove it from production build!
+Do not forget to remove it from production build!
 
 ## Issues
 
