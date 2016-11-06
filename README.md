@@ -9,7 +9,7 @@ Watches for file changes in an extension's directory (by constantly polling file
 2. Edit the `manifest.json` this way:
 
 ```json
-    "permissions": ["contextMenus", "tabs", "activeTab"],
+    "permissions": ["tabs", "activeTab"],
 
     "content_scripts": [{ "js": ["hot-reload.js"] }],
     
