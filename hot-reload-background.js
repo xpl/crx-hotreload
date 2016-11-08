@@ -1,50 +1,54 @@
-const watchChanges = (files, prevTexts) => {
+const filesInDirectory = dir => new Promise (resolve =>
 
-    Promise.all (files.map (url => fetch (new Request (chrome.extension.getURL (url))).then (r => r.text ())))
-           .then (sourceTexts => {
+    dir.createReader ().readEntries (entries =>
 
-                chrome.tabs.query ({ active: true, currentWindow: true }, tabs => {
+        Promise.all (entries.filter (e => e.name[0] !== '.').map (e =>
 
-                    let changed = false
+            e.isDirectory
+                ? filesInDirectory (e)
+                : new Promise (resolve => e.file (resolve))
+        ))
+        .then (files => [].concat (...files))
+        .then (resolve)
+    )
+)
 
-                    if (prevTexts) {
-                        sourceTexts.forEach ((text, i) => {
-                            changed = changed || (text !== prevTexts[i])
-                        })
-                    }
+const timestampForFilesInDirectory = dir =>
+        filesInDirectory (dir).then (files =>
+            files.map (f => f.name + f.lastModifiedDate).join ())
 
-                    if (changed) {
-                    
-                        chrome.tabs.sendMessage (tabs[0].id, { action: 'runtime_reloaded' }, () => {})
-                        chrome.runtime.reload ()
+const reload = () => {
 
-                    } else {
+    chrome.tabs.query ({ active: true, currentWindow: true }, tabs => {
 
-                        setTimeout (() => watchChanges (files, sourceTexts), 1000)
-                    }
-                })
-                
-            })
+        if (tabs[0]) {
+            chrome.tabs.sendMessage (tabs[0].id, { action: 'runtime_reloaded' }, () => {})
+        }
+
+        chrome.runtime.reload ()
+    })
 }
 
-chrome.runtime.getPackageDirectoryEntry (entry => {
+const watchChanges = (dir, lastTimestamp) => {
 
-    entry.createReader ().readEntries (entries => {
+    timestampForFilesInDirectory (dir).then (timestamp => {
 
-        const urls = []
+        if (!lastTimestamp || (lastTimestamp === timestamp)) {
 
-        entries.forEach (e => {
+            setTimeout (() => watchChanges (dir, timestamp), 1000) // retry after 1s
 
-            const ext = e.name.split ('.').pop ()
+        } else {
 
-            if (ext === 'js' ||
-                ext === 'json') {
+            reload ()
+        }
+    })
 
-                urls.push ('/' + e.name)
-            }
-            
-        })
+}
 
-        watchChanges (urls)
-    });
+chrome.management.getSelf (self => {
+
+    if (self.installType === 'development') {
+
+        chrome.runtime.getPackageDirectoryEntry (watchChanges)
+    }
 })
