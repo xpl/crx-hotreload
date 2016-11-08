@@ -22,7 +22,7 @@ const reload = () => {
     chrome.tabs.query ({ active: true, currentWindow: true }, tabs => {
 
         if (tabs[0]) { chrome.tabs.reload (tabs[0].id) }
-            
+
         chrome.runtime.reload ()
     })
 }
@@ -47,6 +47,6 @@ chrome.management.getSelf (self => {
 
     if (self.installType === 'development') {
 
-        chrome.runtime.getPackageDirectoryEntry (watchChanges)
+        chrome.runtime.getPackageDirectoryEntry (dir => watchChanges (dir))
     }
 })
