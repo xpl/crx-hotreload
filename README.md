@@ -2,7 +2,7 @@
 
 Watches for file changes in an extension's directory. When a change detected, it reloads the extension and refreshes the active tab (to re-trigger updated content scripts).
 
-# Features
+## Features
 
 - Works by checking timestamps of files
 - Supports nested directories
