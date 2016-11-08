@@ -6,7 +6,7 @@ Watches for file changes in an extension's directory. When a change detected, it
 
 - Works by checking timestamps of files
 - Supports nested directories
-- Automatically disables itself in production build
+- Automatically disables itself in the production configuration
 
 ## How to use
 
