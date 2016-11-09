@@ -19,3 +19,5 @@ Watches for file changes in an extension's directory. When a change detected, it
     
     "background": { "scripts": ["hot-reload.js"] }
 ```
+
+You can also simply clone this repository and use it as a boilerplate for your extension.
