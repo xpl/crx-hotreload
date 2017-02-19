@@ -17,8 +17,6 @@ Here's [a blog post explaining it](https://60devs.com/hot-reloading-for-chrome-e
 2. Edit your `manifest.json` this way:
 
 ```json
-    "permissions": ["tabs", "activeTab"],
-    
     "background": { "scripts": ["hot-reload.js"] }
 ```
 
