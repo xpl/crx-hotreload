@@ -1,0 +1,36 @@
+{
+  "name": "crx-hotreload",
+  "version": "1.0.0",
+  "description": "Watches for file changes in your Chrome extension's directory. When a change is detected, it reloads the extension and refreshes the active tab (to re-trigger the updated scripts).",
+  "main": "hot-reload.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xpl/crx-hotreload.git"
+  },
+  "keywords": [
+    "chrome",
+    "extension",
+    "plugin",
+    "chrome extension",
+    "chrome plugin",
+    "hot reload",
+    "automatic reload",
+    "restart on code change",
+    "file monitor",
+    "watchdog",
+    "watch",
+    "reload",
+    "hot",
+    "crx",
+    "crx-hotreload"
+  ],
+  "author": "Vitaly Gordon <rocket.mind@gmail.com> (http://github.com/xpl)",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/xpl/crx-hotreload/issues"
+  },
+  "homepage": "https://github.com/xpl/crx-hotreload#readme"
+}
