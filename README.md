@@ -4,13 +4,13 @@ Watches for file changes in your extension's directory. When a change is detecte
 
 Here's [a blog post explaining it](https://60devs.com/hot-reloading-for-chrome-extensions.html) (thanks to [KingOfNothing](https://habrahabr.ru/users/KingOfNothing/) for the translation).
 
-## Features
+# Features
 
 - Works by checking timestamps of files
 - Supports nested directories
 - Automatically disables itself in production
 
-## How to use
+# How to use
 
 1. Drop [`hot-reload.js`](https://github.com/xpl/crx-hotreload/blob/master/hot-reload.js) to your extension's directory.
 
@@ -21,3 +21,7 @@ Here's [a blog post explaining it](https://60devs.com/hot-reloading-for-chrome-e
 ```
 
 Also, you can simply clone this repository and use it as a boilerplate for your extension.
+
+# TODO
+
+Make it `import`able from the [NPM module](https://www.npmjs.com/package/crx-hotreload), as suggested [here](https://stackoverflow.com/questions/2963260/how-do-i-auto-reload-a-chrome-extension-im-developing/40454227#comment79536659_40454227). I think a `require` would work now, as it executes the script, but not sure about the `import`... May need to tweak code a little bit.
