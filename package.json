@@ -1,6 +1,6 @@
 {
   "name": "crx-hotreload",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Watches for file changes in your Chrome extension's directory. When a change is detected, it reloads the extension and refreshes the active tab (to re-trigger the updated scripts).",
   "main": "hot-reload.js",
   "scripts": {
