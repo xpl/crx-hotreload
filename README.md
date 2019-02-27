@@ -24,6 +24,4 @@ Also, you can simply clone this repository and use it as a boilerplate for your 
 
 ## TODO
 
-- [ ] See https://github.com/xpl/crx-hotreload/issues/5 (a feedback needed)
-
 - [ ] Make it `import`able from the [NPM module](https://www.npmjs.com/package/crx-hotreload), as it's suggested [here](https://stackoverflow.com/questions/2963260/how-do-i-auto-reload-a-chrome-extension-im-developing/40454227#comment79536659_40454227). I think a `require` would work now, as it executes the script, but not sure about the `import`... May need to tweak code a little bit.
