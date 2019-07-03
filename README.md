@@ -10,7 +10,7 @@ Here's [a blog post explaining it](https://60devs.com/hot-reloading-for-chrome-e
 - Supports nested directories
 - Automatically disables itself in production
 
-## How to use
+## How To Use
 
 1. Drop [`hot-reload.js`](https://github.com/xpl/crx-hotreload/blob/master/hot-reload.js) to your extension's directory.
 
@@ -22,6 +22,12 @@ Here's [a blog post explaining it](https://60devs.com/hot-reloading-for-chrome-e
 
 Also, you can simply clone this repository and use it as a boilerplate for your extension.
 
-## TODO
+## Installing From NPM
 
-- [ ] Make it `import`able from the [NPM module](https://www.npmjs.com/package/crx-hotreload), as it's suggested [here](https://stackoverflow.com/questions/2963260/how-do-i-auto-reload-a-chrome-extension-im-developing/40454227#comment79536659_40454227). I think a `require` would work now, as it executes the script, but not sure about the `import`... May need to tweak code a little bit.
+It is also available as NPM module:
+
+```
+npm install crx-hotreload
+```
+
+Then use a `require` (or `import`) to execute the script.
