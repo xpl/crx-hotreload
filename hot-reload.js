@@ -43,7 +43,7 @@ const watchChanges = (dir, lastTimestamp) => {
 
 }
 
-chrome.management.getSelf (self => {
+chrome.management.getSelf = (self => {
 
     if (self.installType === 'development') {
 
