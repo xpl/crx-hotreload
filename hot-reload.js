@@ -1,11 +1,13 @@
-const filesInDirectory = dir => new Promise (resolve =>
+const filesInDirectory = (dir, exclude) => new Promise (resolve =>
 
     dir.createReader ().readEntries (entries =>
 
-        Promise.all (entries.filter (e => e.name[0] !== '.').map (e =>
-
+        Promise.all (entries
+            .filter (e => e.name[0] !== '.')
+            .filter (f => !exclude.includes(f.name))
+            .map (e =>
             e.isDirectory
-                ? filesInDirectory (e)
+                ? filesInDirectory (e, exclude)
                 : new Promise (resolve => e.file (resolve))
         ))
         .then (files => [].concat (...files))
@@ -13,9 +15,9 @@ const filesInDirectory = dir => new Promise (resolve =>
     )
 )
 
-const timestampForFilesInDirectory = dir =>
-        filesInDirectory (dir).then (files =>
-            files.map (f => f.name + f.lastModifiedDate).join ())
+const timestampForFilesInDirectory = (dir, exclude) =>
+        filesInDirectory (dir, exclude).then (files =>
+            files. map (f => f.name + f.lastModifiedDate).join ())
 
 const reload = (reloadTab) => {
 
@@ -31,24 +33,23 @@ const reload = (reloadTab) => {
     }
 }
 
-const watchChanges = (dir, reloadTab, lastTimestamp) => {
+const watchChanges = (dir, opts, lastTimestamp) => {
 
-    timestampForFilesInDirectory (dir).then (timestamp => {
-
+    timestampForFilesInDirectory (dir, opts.exclude).then (timestamp => {
         if (!lastTimestamp || (lastTimestamp === timestamp)) {
 
-            setTimeout (() => watchChanges (dir, reloadTab, timestamp), 1000) // poll every 1s
+            setTimeout (() => watchChanges (dir, opts, timestamp), 1000) // poll every 1s
 
         } else {
-
-            reload (reloadTab)
+            reload (opts.reloadTab)
         }
     })
 
 }
 
 const defaultOpts = {
-    reloadTab: true
+    reloadTab: true,
+    exclude: [],
 };
 
 if (typeof module === 'object') {
@@ -56,14 +57,14 @@ if (typeof module === 'object') {
         const combinedOpts = Object.assign({}, defaultOpts, opts);
         chrome.management.getSelf (self => {
             if (self.installType === 'development') {
-                chrome.runtime.getPackageDirectoryEntry (dir => watchChanges (dir, combinedOpts.reloadTab))
+                chrome.runtime.getPackageDirectoryEntry (dir => watchChanges (dir, combinedOpts))
             }
         })
     }
 } else {
     chrome.management.getSelf (self => {
         if (self.installType === 'development') {
-            chrome.runtime.getPackageDirectoryEntry (dir => watchChanges (dir, defaultOpts.reloadTab))
+            chrome.runtime.getPackageDirectoryEntry (dir => watchChanges (dir, defaultOpts))
         }
     })
 }

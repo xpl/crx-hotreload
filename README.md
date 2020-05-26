@@ -13,9 +13,10 @@ Here's [a blog post explaining it](https://60devs.com/hot-reloading-for-chrome-e
 
 ## Options
 
-|  Name        |   Value                    |  Description                           |
-|--------------|----------------------------|----------------------------------------|
-| `reloadTab`  | `boolean` (default: true)  | reload the active tab when crx changes.|
+|  Name        |   Value                      |  Description                           |
+|--------------|------------------------------|----------------------------------------|
+| `reloadTab`  | `boolean` (default: `true`)  | reload the active tab when crx changes.|
+| `exclude`    | `string[]` (default: `[]`)   | file names that we shouldn't watch.    |
 
 ## How To Use
 
