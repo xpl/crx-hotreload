@@ -47,13 +47,23 @@ const watchChanges = (dir, reloadTab, lastTimestamp) => {
 
 }
 
+const defaultOpts = {
+    reloadTab: true
+};
 
 if (typeof module === 'object') {
     exports.default = (opts) => {
+        const combinedOpts = Object.assign({}, defaultOpts, opts);
         chrome.management.getSelf (self => {
             if (self.installType === 'development') {
-                chrome.runtime.getPackageDirectoryEntry (dir => watchChanges (dir, opts.reloadTab))
+                chrome.runtime.getPackageDirectoryEntry (dir => watchChanges (dir, combinedOpts.reloadTab))
             }
         })
     }
+} else {
+    chrome.management.getSelf (self => {
+        if (self.installType === 'development') {
+            chrome.runtime.getPackageDirectoryEntry (dir => watchChanges (dir, defaultOpts.reloadTab))
+        }
+    })
 }
