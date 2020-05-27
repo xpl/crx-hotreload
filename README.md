@@ -9,7 +9,15 @@ Here's [a blog post explaining it](https://60devs.com/hot-reloading-for-chrome-e
 - Works by checking timestamps of files
 - Supports nested directories
 - Automatically disables itself in production
-- And it's just a <a href="https://github.com/xpl/crx-hotreload/blob/master/hot-reload.js">50 lines of code</a>!
+- And it's just <a href="https://github.com/xpl/crx-hotreload/blob/master/hot-reload.js">50 lines of code</a>!
+
+## Options
+
+|  Name        |   Value                      |  Description                           |
+|--------------|------------------------------|----------------------------------------|
+| `reloadTab`  | `boolean` (default: `true`)  | reload the active tab when crx changes.|
+| `exclude`    | `string[]` (default: `[]`)   | file names that we shouldn't watch.    |
+| `include`    | `string[]` (default: `[]`)   | file names that we should watch.       |
 
 ## How To Use
 
@@ -31,4 +39,10 @@ It is also available as NPM module:
 npm install crx-hotreload
 ```
 
-Then use a `require` (or `import`) to execute the script.
+In your script:
+```
+const hotReload = require('crx-hotreload');
+hotReload.default({
+    reloadTab: false
+});
+```
