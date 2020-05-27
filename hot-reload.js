@@ -1,13 +1,14 @@
-const filesInDirectory = (dir, exclude) => new Promise (resolve =>
+const filesInDirectory = (dir, exclude, include) => new Promise (resolve =>
 
     dir.createReader ().readEntries (entries =>
 
         Promise.all (entries
             .filter (e => e.name[0] !== '.')
+            .filter (f => !f.isDirectory && include.length > 0 ? include.includes(f.name) : true)
             .filter (f => !exclude.includes(f.name))
             .map (e =>
             e.isDirectory
-                ? filesInDirectory (e, exclude)
+                ? filesInDirectory (e, exclude, include)
                 : new Promise (resolve => e.file (resolve))
         ))
         .then (files => [].concat (...files))
@@ -15,8 +16,8 @@ const filesInDirectory = (dir, exclude) => new Promise (resolve =>
     )
 )
 
-const timestampForFilesInDirectory = (dir, exclude) =>
-        filesInDirectory (dir, exclude).then (files =>
+const timestampForFilesInDirectory = (dir, exclude, include) =>
+        filesInDirectory (dir, exclude, include).then (files =>
             files. map (f => f.name + f.lastModifiedDate).join ())
 
 const reload = (reloadTab) => {
@@ -35,7 +36,7 @@ const reload = (reloadTab) => {
 
 const watchChanges = (dir, opts, lastTimestamp) => {
 
-    timestampForFilesInDirectory (dir, opts.exclude).then (timestamp => {
+    timestampForFilesInDirectory (dir, opts.exclude, opts.include).then (timestamp => {
         if (!lastTimestamp || (lastTimestamp === timestamp)) {
 
             setTimeout (() => watchChanges (dir, opts, timestamp), 1000) // poll every 1s
@@ -50,6 +51,7 @@ const watchChanges = (dir, opts, lastTimestamp) => {
 const defaultOpts = {
     reloadTab: true,
     exclude: [],
+    include: [],
 };
 
 if (typeof module === 'object') {

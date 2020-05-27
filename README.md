@@ -17,6 +17,7 @@ Here's [a blog post explaining it](https://60devs.com/hot-reloading-for-chrome-e
 |--------------|------------------------------|----------------------------------------|
 | `reloadTab`  | `boolean` (default: `true`)  | reload the active tab when crx changes.|
 | `exclude`    | `string[]` (default: `[]`)   | file names that we shouldn't watch.    |
+| `include`    | `string[]` (default: `[]`)   | file names that we should watch.       |
 
 ## How To Use
 
