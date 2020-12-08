@@ -21,13 +21,12 @@ const reload = () => {
 
     chrome.tabs.query ({ active: true, currentWindow: true }, tabs => { // NB: see https://github.com/xpl/crx-hotreload/issues/5
 
-        if (tabs[0]) { chrome.tabs.reload (tabs[0].id) }
-		{
-            setTimeout(function () {
+        if (tabs[0]) { 
 
-                chrome.runtime.reload ()
-            }, 500)
+            chrome.tabs.executeScript(tabs[0].id, {code: 'setTimeout(function () { location.reload(); }, 300)'}, function() {});
         }
+
+        chrome.runtime.reload ()
     })
 }
 
