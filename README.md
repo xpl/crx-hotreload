@@ -18,7 +18,8 @@ Here's [a blog post explaining it](https://60devs.com/hot-reloading-for-chrome-e
 2. Put the following into your `manifest.json` file:
 
 ```json
-    "background": { "scripts": ["hot-reload.js"] }
+    "background": { "scripts": ["hot-reload.js"] },
+    "permissions": ["http://*/*", "https://*/*"],
 ```
 
 Also, you can simply clone this repository and use it as a boilerplate for your extension.
