@@ -18,14 +18,22 @@ const timestampForFilesInDirectory = dir =>
             files.map (f => f.name + f.lastModifiedDate).join ())
 
 const reload = () => {
-
-    chrome.tabs.query ({ active: true, currentWindow: true }, tabs => { // NB: see https://github.com/xpl/crx-hotreload/issues/5
-
-        if (tabs[0]) { chrome.tabs.reload (tabs[0].id) }
-
-        setTimeout(() => { chrome.runtime.reload () }, 500)
+    chrome.permissions.contains ({
+        permissions: ["activeTab"]
+    }, granted => {
+        if (granted) {
+            chrome.tabs.query ({ active: true, currentWindow: true }, tabs => { // NB: see https://github.com/xpl/crx-hotreload/issues/5
+                if (tabs[0]) {
+                    chrome.tabs.executeScript (tabs[0].id, { code: 'setTimeout(() => { location.reload() }, 300)' }, () => {})
+                    chrome.runtime.reload ()
+                }
+            })
+        } else {
+            alert ('Unable to reload the active tab — please add the "activeTab" permission to manifest.json!')
+            chrome.runtime.reload ()
+        }
     })
-}
+
 
 const watchChanges = (dir, lastTimestamp) => {
 
