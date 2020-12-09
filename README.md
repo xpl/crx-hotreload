@@ -9,7 +9,7 @@ Here's [a blog post explaining it](https://60devs.com/hot-reloading-for-chrome-e
 - Works by checking timestamps of files
 - Supports nested directories
 - Automatically disables itself in production
-- And it's just a <a href="https://github.com/xpl/crx-hotreload/blob/master/hot-reload.js">50 lines of code</a>!
+- And it's under a <a href="https://github.com/xpl/crx-hotreload/blob/master/hot-reload.js">40 lines of code</a>!
 
 ## How To Use
 
