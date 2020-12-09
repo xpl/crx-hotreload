@@ -22,7 +22,7 @@ const reload = () => {
         permissions: ["activeTab"]
     }, granted => {
         if (granted) {
-            chrome.tabs.query ({ active: true, currentWindow: true }, tabs => { // NB: see https://github.com/xpl/crx-hotreload/issues/5
+            chrome.tabs.query ({ active: true, lastFocusedWindow: true }, tabs => { // NB: see https://github.com/xpl/crx-hotreload/issues/5
                 if (tabs[0]) {
                     chrome.tabs.executeScript (tabs[0].id, { code: 'setTimeout(() => { location.reload() }, 300)' }, () => {})
                     chrome.runtime.reload ()
