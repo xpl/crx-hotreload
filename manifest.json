@@ -5,7 +5,7 @@
     "description": "An example extension which demonstrates hot-reloading",
     "version":     "1.1337.0",
 
-    "permissions": ["activeTab"],
+    "permissions": ["http://*/*", "https://*/*"],
 
     "background": {
         "scripts": ["hot-reload.js"]
