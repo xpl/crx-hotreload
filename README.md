@@ -32,3 +32,7 @@ npm install crx-hotreload
 ```
 
 Then use a `require` (or `import`) to execute the script.
+
+```js
+import "crx-hotreload";
+```
