@@ -35,4 +35,4 @@ Then use a `require` (or `import`) to execute the script.
 
 ## Limitations
 
-- Does not work with Manifest Version 3, as Chrome has recently removed the APIs essential for working with file system from background scripts: https://stackoverflow.com/questions/65975659/how-do-i-get-access-to-all-the-files-in-the-extension-in-chrome-extension-manife/65976345#65976345 :(
+- Does not work with Manifest Version 3, as Chrome has recently removed the APIs essential for working with file system from background scripts: https://stackoverflow.com/questions/65975659/how-do-i-get-access-to-all-the-files-in-the-extension-in-chrome-extension-manife/65976345 :(
