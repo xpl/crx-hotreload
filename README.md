@@ -1,5 +1,8 @@
 # Chrome Extension Hot Reloader
 
+> [!IMPORTANT]  
+> Does not work with Manifest Version 3, as Chrome has recently removed the APIs essential for working with file system from background scripts: https://stackoverflow.com/questions/65975659/how-do-i-get-access-to-all-the-files-in-the-extension-in-chrome-extension-manife/65976345 :(
+
 Watches for file changes in your extension's directory. When a change is detected, it reloads the extension and refreshes the active tab (to re-trigger the updated scripts).
 
 Here's [a blog post explaining it](https://60devs.com/hot-reloading-for-chrome-extensions.html) (thanks to [KingOfNothing](https://habrahabr.ru/users/KingOfNothing/) for the translation).
@@ -32,7 +35,3 @@ npm install crx-hotreload
 ```
 
 Then use a `require` (or `import`) to execute the script.
-
-## Limitations
-
-- Does not work with Manifest Version 3, as Chrome has recently removed the APIs essential for working with file system from background scripts: https://stackoverflow.com/questions/65975659/how-do-i-get-access-to-all-the-files-in-the-extension-in-chrome-extension-manife/65976345 :(
